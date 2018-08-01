@@ -11,6 +11,7 @@
 //Ende Qt 5
 #include "meinwidget.h"
 
+
 meinWidget::meinWidget(QWidget *parent):QWidget(parent)
 {
     QPushButton *quit = new QPushButton(tr("Ende"));
@@ -34,14 +35,28 @@ meinWidget::meinWidget(QWidget *parent):QWidget(parent)
     connect(loader, SIGNAL(clicked()), this, SLOT(loader()));
 
 
+   /* QLCDNumber* score = new QLCDNumber(this); //https://doc.qt.io/qt-5/qtwidgets-widgets-tetrix-example.html
+    score->setSegmentStyle(QLCDNumber::Filled); //PunkteLcd=scoreLcd
+    score->setMode(QLCDNumber::Dec);
+    connect(this, SIGNAL(scoreChanged(void)),score, SLOT(display(int)));*/
+
     meinZeichenFeld=new zeichenFeld;
+    //scoreLcd= new QLCDNumber(5);  n!
+    //scoreLcd -> setSegmentStyle(QLCDNumber::Filled);n!
 
     QGridLayout *Layout = new QGridLayout;
+    //Layout->addLCDNumber(score,0,5);
     Layout->addWidget(start,0,0);
     Layout->addWidget(quit,3,0);
     Layout->addWidget(saver, 1,0);
     Layout->addWidget(loader, 2,0);
+    //score= new Score;
+   // Layout->addWidget(score,1,4);
 
+   // Layout->addWidget(createLabel(tr("Punktestand")),0,2);
+   // Layout->addWidget(score,1,2);
+
+    //Layout ->addWidget(scoreLcd,1,4); n!
     Layout->addWidget(meinZeichenFeld,0,1,6,2);
     Layout->setColumnStretch(1,10);
     setLayout(Layout);
@@ -52,6 +67,7 @@ void meinWidget::saver(void){
     QFileDialog dialog(this);
     QString fileName;
     QFile file;
+
     dialog.setFileMode(QFileDialog::AnyFile);
     fileName= dialog.getOpenFileName(this, tr("Save as"), ".", tr("Gamefile(*.xml)"));
     if (fileName.isNull()==true){

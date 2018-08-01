@@ -1,7 +1,9 @@
 #include<QWidget>
 #include "zeichenfeld.h"
 #include<QLCDNumber>
-//#include <QLabel>
+#include <QLabel>
+
+class QLCDNumber;
 
 class meinWidget:public QWidget
 {
@@ -11,7 +13,8 @@ public:
     meinWidget(QWidget *parent=0);
 private:
     zeichenFeld *meinZeichenFeld;
-
+   // Score *score;
+   // QLCDNumber *scoreLcd; //n
 
 private slots:
 

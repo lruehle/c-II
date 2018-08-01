@@ -3,12 +3,15 @@
 #include <QKeyEvent>
 #include<QGraphicsRectItem>
 #include "zeichenfeld.h"
+#include "score.h"
 #include <QMessageBox>
 #include<QPen>
 
 
+
 zeichenFeld::zeichenFeld(QWidget *parent):QWidget(parent)
 {
+
     setFixedSize(700,500);
     QPen pen;
     pen.setWidth(3);
@@ -20,6 +23,9 @@ zeichenFeld::zeichenFeld(QWidget *parent):QWidget(parent)
     setFocusPolicy(Qt::StrongFocus);
     xAv = 300;
     yAv = 450;
+
+
+
 }
 
 zeichenFeld::~zeichenFeld()
@@ -30,6 +36,7 @@ zeichenFeld::~zeichenFeld()
 
 void zeichenFeld::paintEvent(QPaintEvent *event)
 {
+
     QPainter painter;
     painter.begin (this);
 
@@ -46,7 +53,6 @@ void zeichenFeld::paintEvent(QPaintEvent *event)
 
 void zeichenFeld::keyPressEvent(QKeyEvent *event)
 {
-
     if(event->key()==Qt::Key_A){
             //enums?
         if(xAv>0){
@@ -55,12 +61,13 @@ void zeichenFeld::keyPressEvent(QKeyEvent *event)
      }
     if(event->key()==Qt::Key_D){
             //enums?
-        if(xAv<650)
+        if(xAv<650){
             xAv+=40;
+        }
     }
 
     if(event->key()==Qt::Key_W){
-        if(yAv>300){
+         if(yAv>300){
             yAv-=15;
         }
     }
@@ -77,6 +84,24 @@ void zeichenFeld::keyPressEvent(QKeyEvent *event)
     points.push_back((point));
     update();
 }
+
+
+/*void zeichenFeld::mousePressEvent(QMouseEvent *event){
+    if(event->button()==Qt::LeftButton)
+    {
+        xAv-=35;
+    }
+    if(event->button()==Qt::RightButton)
+    {
+        xAv+=35;
+    }
+    struct myPoint *point;
+
+    point=new struct myPoint;
+    point->point.setX(xAv);
+    points.push_back((point));
+    update();
+}*/
 
 
 void zeichenFeld::serialize(QFile &file)//Bsp 3
@@ -112,7 +137,7 @@ void zeichenFeld::deserialize(QFile &file){
 
         in>>xAv>>yAv;
         point ->point.setX(xAv);
-        point-> point.setY(yAv);
+        point->point.setY(yAv);
         in>>c; // Leerstellen werden vom '>>' Operator 'konmsumiert';
         // Zeilenenden nicht.
        /* QMessageBox::warning(this,tr("Test"),

@@ -21,6 +21,10 @@ public:
     void deserialize (QFile &file);
     void start(void){timer->start(10);}//{timer->start(10);lauf=1;}
 
+    //void punktestand();
+
+//signals:
+  //  void scoreChanged(int Punkte);
 private:
     QTimer *timer;
     QColor colorAv;
@@ -29,12 +33,16 @@ private:
     QColor color3;
     QColor colorlife;
     vector<struct myPoint *> points;
+    //int lauf;
     int yAv=0;
     int xAv=0;
+    //int Punkte=0;
 
 
 protected:
     void paintEvent(QPaintEvent *event);
-    void keyPressEvent(QKeyEvent *event);
+   // void keyReleaseEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);//override?
+    //void mousePressEvent(QMouseEvent *event);
 
 };
