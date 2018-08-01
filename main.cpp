@@ -1,19 +1,15 @@
 #include "meinwidget.h"
-#include "score.h"
+// Qt5 add:
 #include <QApplication>
+#include <QTime>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    meinWidget widget;
-    widget.setGeometry(100,100,800,500);
+    QApplication a(argc, argv);
+    meinWidget w;
+    QTime time = QTime::currentTime();
+    w.setGeometry(100, 100, 500, 355);
+    w.show();
 
-    widget.show();
-
-    Score score;
-    score.show();
-
-
-
-    return app.exec();
+    return a.exec();
 }

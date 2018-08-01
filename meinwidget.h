@@ -1,25 +1,20 @@
-#include<QWidget>
-#include "zeichenfeld.h"
-#include<QLCDNumber>
-#include <QLabel>
+// Qt5 add:
+#include <QWidget>
 
-class QLCDNumber;
+#include "zeichenFeld.h"
 
-class meinWidget:public QWidget
+class meinWidget : public QWidget
 {
-    Q_OBJECT // macro für QT Bibs
+    Q_OBJECT  // notwendig, da Slots enthalten sind
 
 public:
-    meinWidget(QWidget *parent=0);
+    meinWidget(QWidget *parent = 0);
+
 private:
     zeichenFeld *meinZeichenFeld;
-   // Score *score;
-   // QLCDNumber *scoreLcd; //n
 
 private slots:
-
-   void start(void);
-   void saver(void);
-   void loader(void);
-
+    void start(void);
+    void stop(void);
+    void newobjekt(void);
 };

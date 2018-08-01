@@ -1,48 +1,43 @@
-#include<vector>
-#include<QWidget>
-#include<QBrush>
-#include<QTimer>
-#include <QFile>
+#include <vector>
 using namespace std;
+#include <QWidget>
+#include <QTimer>
+#include <QPoint>
 
 
-struct myPoint
-    {
-    QPoint point;
-    QColor color;
+struct position
+{
+    QPoint pos;
 };
 
 class zeichenFeld : public QWidget
 {
+    Q_OBJECT // so i can add slots...
 public:
-    zeichenFeld(QWidget *parent=0);
+    zeichenFeld(QWidget *parent = 0);
     ~zeichenFeld();
-    void serialize(QFile &file);
-    void deserialize (QFile &file);
-    void start(void){timer->start(10);}//{timer->start(10);lauf=1;}
 
-    //void punktestand();
+    enum drawType { square, circle };
 
-//signals:
-  //  void scoreChanged(int Punkte);
+    void start(void) { timer->start(1000); movetimer->start(2000);kreise=1;/* createtimer->start(1000);*/ increment=1; }
+    void stop(void) { timer->stop();movetimer->stop(); /*createtimer->stop();*/ increment=0; }
+    void newobjekt(void);
+    int randInt(int low, int high);
+    int kreise=0;//Anzahl für Kreise, die es gibt
+public slots:
+    void move();
 private:
     QTimer *timer;
-    QColor colorAv;
-    QColor color1;
-    QColor color2;
-    QColor color3;
-    QColor colorlife;
-    vector<struct myPoint *> points;
-    //int lauf;
-    int yAv=0;
-    int xAv=0;
-    //int Punkte=0;
+    QTimer *movetimer;
+    int lastX;
+    int lastY;
+    int increment;
+    int phase;
+    int x2,y2,low,high,xnew, ynew;
+    vector<struct position*> falling;
 
 
 protected:
     void paintEvent(QPaintEvent *event);
-   // void keyReleaseEvent(QKeyEvent *event);
-    void keyPressEvent(QKeyEvent *event);//override?
-    //void mousePressEvent(QMouseEvent *event);
-
 };
+
