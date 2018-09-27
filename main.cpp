@@ -1,13 +1,15 @@
 #include "meinwidget.h"
+// Qt5 add:
 #include <QApplication>
+#include <QTime>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    meinWidget widget;
-    widget.setGeometry(100,100,800,500);
-    widget.show();
+    QApplication a(argc, argv);
+    meinWidget w;
+    QTime time = QTime::currentTime();
+    w.setGeometry(100, 100, 500, 355);
+    w.show();
 
-
-    return app.exec();
+    return a.exec();
 }

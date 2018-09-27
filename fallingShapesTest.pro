@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-18T11:39:53
+# Project created by QtCreator 2018-07-28T12:28:12
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Anfang
+TARGET = fallingShapesTest
 TEMPLATE = app
 
 
